@@ -7,17 +7,17 @@ import {
 
 export default function Avatar ({url: uri, size = 40}) {
   return (
-    <View style={[styles.container, containerSize(size)]}>
+    <View style={[styles.container, dimensions(size)]}>
       <Image
         source={{uri}}
-        style={styles.image}
-        resizeMode="cover"
+        style={dimensions(size)}
+        resizeMode="contain"
       />
     </View>
   );
 }
 
-const containerSize = size => ({
+const dimensions = size => ({
   height: size,
   width: size,
   borderRadius: size / 2
@@ -26,9 +26,5 @@ const containerSize = size => ({
 const styles = StyleSheet.create({
   container: {
     overflow: 'hidden'
-  },
-  image: {
-    height: 80,
-    width: 80
   }
 });

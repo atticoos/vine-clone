@@ -20,7 +20,6 @@ const videosSelector = createSelector(
     })
     .filter(video => !!video.user)
     .sort((a, b) => b.created - a.created)
-    .slice(0, 5)
 );
 
 export default videosSelector;
