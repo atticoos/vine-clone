@@ -25,7 +25,7 @@ function Logo () {
     <View style={styles.logo}>
       <Text style={styles.logoText}>I</Text>
       <Image
-        source={require('../assets/icon.png')}
+        source={require('../assets/logo2.png')}
         style={styles.icon}
         resizeMode="contain"
       />
@@ -46,17 +46,18 @@ const styles = StyleSheet.create({
     justifyContent: 'space-between'
   },
   icon: {
-    width: 30,
-    height: 30
+    width: 85,
+    height: 28,
+    marginTop: -4
   },
   logo: {
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    width: 85
+    width: 130
   },
   logoText: {
-    fontSize: 36,
+    fontSize: 34,
     color: '#fff',
     fontWeight: '600'
     // fontWeight: 'bold'

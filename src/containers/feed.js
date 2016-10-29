@@ -16,8 +16,8 @@ import VideoPost from '../components/videoPost';
 
 class Feed extends React.Component {
   static defaultProps = {
-    autoPlay: false,
-    perPage: 5
+    autoPlay: !__DEV__,
+    perPage: __DEV__ ? 5 : 300
   };
   constructor (props) {
     super(props);

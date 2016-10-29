@@ -88,23 +88,3 @@ const selector = (state, props) => ({
 });
 
 export default connect(selector)(VinePlayer);
-
-/*
-
-{!playing &&
-  <Thumbnail
-    style={styles.thumbnail}
-    url={video.thumbnailUrl}
-    onPress={this.props.onPlay}
-  />
-}
-{playing &&
-  <Video
-    style={styles.thumbnail}
-    url={video.videoUrl}
-    paused={paused}
-    onPress={paused ? onPlay : onPause}
-    onEnd={onLoop}
-  />
-}
- */
