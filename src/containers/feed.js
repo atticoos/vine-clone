@@ -5,8 +5,10 @@ import {
   View,
   Text
 } from 'react-native';
+import {connect} from 'react-redux';
 import Screen from '../components/screen';
 import Video from 'react-native-video';
+import VideoPost from '../components/videoPost';
 
 class Feed extends React.Component {
   constructor (props) {
@@ -22,16 +24,17 @@ class Feed extends React.Component {
     };
   }
   render () {
+    console.log(this.props);
     return (
       <Screen>
-        <Text>Hello World</Text>
-        <Video
-          source={{isNetwork: false, uri: "https://mtc.cdn.vine.co/r/videos_h264dash/D8525D0D1D1369940302944940032_530b952d5b9.25.2.B4533719-F575-40A4-9B00-BE8020CC54D5.mp4"}}
-          style={styles.video}
-          {...this.state}
-          onLoad={load => console.log('loaded', load)}
-          onError={error => console.log('error', error)}
-        />
+        <ScrollView>
+          {this.props.videos.map(video => (
+            <VideoPost
+              key={video.postId}
+              video={video}
+            />
+          ))}
+        </ScrollView>
       </Screen>
     );
   }
@@ -44,4 +47,8 @@ const styles = StyleSheet.create({
   }
 });
 
-export default Feed;
+const selector = state => ({
+  videos: Object.keys(state.entities.videos).map(postId => state.entities.videos[postId])
+});
+
+export default connect(selector)(Feed);
