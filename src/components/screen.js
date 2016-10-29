@@ -2,6 +2,7 @@ import React from 'react';
 import {
   Image,
   StyleSheet,
+  Text,
   View
 } from 'react-native';
 import Colors from '../constants/colors';
@@ -11,16 +12,26 @@ function Screen ({children, style}) {
     <View style={[styles.container, style]}>
       <View style={styles.header}>
         <View />
-          <Image
-            source={require('../assets/icon.png')}
-            style={styles.icon}
-            resizeMode="contain"
-          />
+        <Logo />
         <View />
       </View>
       {children}
     </View>
   );
+}
+
+function Logo () {
+  return (
+    <View style={styles.logo}>
+      <Text style={styles.logoText}>I</Text>
+      <Image
+        source={require('../assets/icon.png')}
+        style={styles.icon}
+        resizeMode="contain"
+      />
+    <Text style={styles.logoText}>U</Text>
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -38,6 +49,18 @@ const styles = StyleSheet.create({
   icon: {
     width: 30,
     height: 30
+  },
+  logo: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    width: 85
+  },
+  logoText: {
+    fontSize: 36,
+    color: '#fff',
+    fontWeight: '600'
+    // fontWeight: 'bold'
   }
 });
 
