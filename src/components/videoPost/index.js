@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  Dimensions,
   StyleSheet,
   View,
   Text
@@ -78,8 +79,8 @@ const styles = StyleSheet.create({
     paddingBottom: 20
   },
   thumbnail: {
-    height: 400,
-    width: 400
+    height: Dimensions.get('window').width,
+    width: Dimensions.get('window').width
   },
   padding: {
     padding: Styles.Padding.NORMAL
