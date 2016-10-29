@@ -6,7 +6,7 @@ import {
 } from 'react-native';
 import Colors from '../constants/colors';
 
-function Screen ({style}) {
+function Screen ({children, style}) {
   return (
     <View style={[styles.container, style]}>
       <View style={styles.header}>
@@ -17,6 +17,7 @@ function Screen ({style}) {
           />
         <View />
       </View>
+      {children}
     </View>
   );
 }
