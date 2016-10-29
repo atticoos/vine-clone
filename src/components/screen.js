@@ -40,9 +40,8 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: Colors.Green.NORMAL,
-    paddingTop: 30,
-    paddingBottom: 15,
-    paddingVertical: 15,
+    paddingTop: 20,
+    paddingBottom: 5,
     flexDirection: 'row',
     justifyContent: 'space-between'
   },
