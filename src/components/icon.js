@@ -87,6 +87,7 @@ Icon.Name = {
 
 const styles = StyleSheet.create({
   text: {
-    fontFamily: 'vine_actions'
+    fontFamily: 'vine_actions',
+    fontWeight: '700'
   }
 })

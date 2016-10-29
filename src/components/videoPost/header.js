@@ -4,6 +4,7 @@ import {
   View,
   Text
 } from 'react-native';
+import Colors from '../../constants/colors';
 import Avatar from '../avatar';
 
 export default function PostHeader ({user, postTime, loops, style}) {
@@ -24,7 +25,7 @@ function Profile ({user, postTime}) {
       />
       <View style={styles.profileInfo}>
         <Text style={styles.userName}>{user.username}</Text>
-        <Text style={styles.postTime}>{postTime.format('hh:mma')}</Text>
+        <Text style={styles.postTime}>{postTime.format('MMMM Do, YYYY')}</Text>
       </View>
     </View>
   );
@@ -56,23 +57,24 @@ const styles = StyleSheet.create({
     marginLeft: 10,
   },
   userName: {
-    color: 'green',
+    color: Colors.Black.NORMAL,
     fontSize: 16,
     marginBottom: 2
   },
   postTime: {
-    color: 'gray',
+    color: Colors.Gray.NORMAL,
     fontSize: 12
   },
   loopContainer: {
-
+    alignItems: 'flex-end'
   },
   loopsCount: {
-    fontSize: 18,
+    color: Colors.Black.NORMAL,
+    fontSize: 16,
     marginBottom: 2
   },
   loopsLabel: {
-    color: 'gray',
+    color: Colors.Gray.NORMAL,
     fontSize: 12
   }
 });

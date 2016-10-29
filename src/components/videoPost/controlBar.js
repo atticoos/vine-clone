@@ -5,6 +5,7 @@ import {
   View,
   Text
 } from 'react-native';
+import Colors from '../../constants/colors';
 import Icon from '../icon';
 
 class ControlBar extends React.Component {
@@ -22,7 +23,7 @@ class ControlBar extends React.Component {
           onPress={this.props.onCommentPressed}
         />
         <Control
-          icon={Icon.Name.REVINE_STROKED}
+          icon={Icon.Name.SHARE_STROKED}
           count={this.props.revines}
           onPress={this.props.onRevinePressed}
         />
@@ -53,16 +54,16 @@ const styles = StyleSheet.create({
   control: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginRight: 25
+    marginRight: 30
   },
   icon: {
-    fontSize: 18,
-    color: 'gray'
+    fontSize: 22,
+    color: Colors.Gray.NORMAL
   },
   count: {
     fontSize: 10,
     marginLeft: 10,
-    color: 'gray'
+    color: Colors.Gray.NORMAL
   }
 });
 

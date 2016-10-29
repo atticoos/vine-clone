@@ -4,6 +4,7 @@ import {
   View,
   Text
 } from 'react-native';
+import Colors from '../../constants/colors';
 import Styles from '../../constants/styles';
 import Header from './header';
 import ControlBar from './controlBar';
@@ -61,8 +62,9 @@ class VideoPost extends React.Component {
 
 const styles = StyleSheet.create({
   container: {
-    borderBottomColor: 'gray',
-    borderBottomWidth: 2
+    borderBottomColor: Colors.Gray.LIGHT,
+    borderBottomWidth: 2,
+    paddingBottom: 20
   },
   thumbnail: {
     height: 400,
@@ -73,8 +75,8 @@ const styles = StyleSheet.create({
   },
   description: {
     fontSize: 14,
-    marginBottom: 8,
-    color: 'black'
+    marginBottom: 15,
+    color: Colors.Black.NORMAL
   }
 });
 
