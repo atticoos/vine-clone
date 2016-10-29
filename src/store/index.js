@@ -8,7 +8,7 @@ const sagaMiddleware = createSagaMiddleware();
 
 const logger = createLogger({
   collapsed: false,
-  predicate: () => false && __DEV__
+  predicate: () => __DEV__
 });
 
 const createStoreWithMiddleware = applyMiddleware(

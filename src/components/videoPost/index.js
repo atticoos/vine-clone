@@ -8,6 +8,7 @@ import Colors from '../../constants/colors';
 import Styles from '../../constants/styles';
 import Header from './header';
 import ControlBar from './controlBar';
+import Description from './description';
 import Thumbnail from './thumbnail';
 import Video from './video';
 
@@ -50,7 +51,11 @@ class VideoPost extends React.Component {
         }
         <View style={styles.padding}>
           {!!video.description &&
-            <Text style={styles.description}>{video.description}</Text>
+            <Description
+              style={styles.description}
+              description={video.description}
+              entities={video.entities}
+            />
           }
           <ControlBar
             likes={video.likes.count}
