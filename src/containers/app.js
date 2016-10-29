@@ -2,6 +2,7 @@
 
 import React from 'react';
 import {
+  StatusBar,
   View
 } from 'react-native';
 import {Provider} from 'react-redux';
@@ -15,7 +16,10 @@ class App extends React.Component {
   render () {
     return (
       <Provider store={store}>
-        <Feed />
+        <View style={{flex: 1}}>
+          <StatusBar barStyle="light-content" />
+          <Feed />
+        </View>
       </Provider>
     );
   }

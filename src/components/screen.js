@@ -12,7 +12,8 @@ function Screen ({children, style}) {
       <View style={styles.header}>
         <View />
           <Image
-            source={require('../assets/icon.png')} style={{width: 40, height: 40}}
+            source={require('../assets/icon.png')}
+            style={styles.icon}
             resizeMode="contain"
           />
         <View />
@@ -28,11 +29,15 @@ const styles = StyleSheet.create({
   },
   header: {
     backgroundColor: Colors.Green.NORMAL,
-    paddingTop: 40,
+    paddingTop: 30,
     paddingBottom: 15,
     paddingVertical: 15,
     flexDirection: 'row',
     justifyContent: 'space-between'
+  },
+  icon: {
+    width: 30,
+    height: 30
   }
 });
 

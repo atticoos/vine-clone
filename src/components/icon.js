@@ -4,10 +4,9 @@ import {
   Text
 } from 'react-native';
 
-export default function Icon () {
-  var name = Icon.Name.V_LOGO
+export default function Icon ({style, name}) {
   return (
-    <Text style={styles.text}>{name}</Text>
+    <Text style={[styles.text, style]}>{name}</Text>
   );
 }
 

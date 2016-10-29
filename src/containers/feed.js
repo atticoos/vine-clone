@@ -5,9 +5,11 @@ import {
   View,
   Text
 } from 'react-native';
+import {bindActionCreators} from 'redux';
 import {connect} from 'react-redux';
-import {createStructuredSelector} from 'reselect';
-import videoSelector from '../selectors/videos';
+import selector from '../selectors/feed';
+import * as FeedActions from '../actions/feed';
+import * as VideoActions from '../actions/videoActions';
 import Screen from '../components/screen';
 import Video from 'react-native-video';
 import VideoPost from '../components/videoPost';
@@ -33,6 +35,11 @@ class Feed extends React.Component {
             <VideoPost
               key={video.postId}
               video={video}
+              playing={video.postId === this.props.videoPlaying}
+              paused={this.props.videoPaused}
+              onPlay={() => this.props.feedActions.playVideo(video.postId)}
+              onPause={() => this.props.feedActions.pauseVideo()}
+              onLoop={() => this.props.videoActions.loop(video.postId)}
             />
           ))}
         </ScrollView>
@@ -48,8 +55,9 @@ const styles = StyleSheet.create({
   }
 });
 
-const selector = createStructuredSelector({
-  videos: videoSelector
+const actions = dispatch => ({
+  feedActions: bindActionCreators(FeedActions, dispatch),
+  videoActions: bindActionCreators(VideoActions, dispatch)
 });
 
-export default connect(selector)(Feed);
+export default connect(selector, actions)(Feed);
