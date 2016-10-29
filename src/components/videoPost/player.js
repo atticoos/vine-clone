@@ -24,9 +24,8 @@ class VinePlayer extends React.Component {
       onLoop,
       ...props
     } = this.props;
-    console.log('props', this.props)
     var {loaded} = this.state;
-    console.log({activated})
+
     return (
       <View style={style} {...props}>
         {activated &&

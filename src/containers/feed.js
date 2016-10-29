@@ -26,11 +26,18 @@ class Feed extends React.Component {
       controls: false,
       skin: 'custom'
     };
+    this.onCardChanged = this.onCardChanged.bind(this);
+  }
+  componentWillMount () {
+    this.props.feedActions.playVideo(this.props.videos[0].postId);
+  }
+  onCardChanged (index) {
+    this.props.feedActions.playVideo(this.props.videos[index].postId);
   }
   render () {
     return (
       <Screen>
-        <CardScrollView>
+        <CardScrollView onCardChanged={this.onCardChanged}>
           {this.props.videos.map(video => (
             <VideoPost
               key={video.postId}

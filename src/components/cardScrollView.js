@@ -11,12 +11,6 @@ const START_OFFSET = 0;
 const VELOCITY_THRESHOLD = 0.2;
 const DURATION = 300;
 
-const logGestureState = (gesture, state) => {
-  return;
-  console.log(gesture);
-  Object.keys(state).forEach(key => console.log(' | ', key, state[key]));
-}
-
 const velocityToDuration = x => {
   // var x = Math.abs(velocity);
   return Math.abs(x * 200);
@@ -89,6 +83,7 @@ class CardScrollView extends React.Component {
       duration: DURATION
     }).start(() => {
       this.lastY = -nearestCard;
+      this.props.onCardChanged(this.cardPositions.indexOf(nearestCard));
     });
   }
 
@@ -117,6 +112,7 @@ class CardScrollView extends React.Component {
       duration: DURATION
     }).start(() => {
       this.lastY = -nearestCard;
+      this.props.onCardChanged(this.cardPositions.indexOf(nearestCard));
     });
   }
 
@@ -133,7 +129,6 @@ class CardScrollView extends React.Component {
   scrollToNextCard (velocity) {
     var toValue = this.state.offset._value - CELL_HEIGHT;
     var target = this.getNextCard(this.state.offset._value);
-    console.log('target', target)
 
     Animated.timing(this.state.offset, {
         toValue,
