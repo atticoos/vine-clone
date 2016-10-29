@@ -1,5 +1,6 @@
 import React from 'react';
 import {
+  ActivityIndicator,
   StyleSheet,
   View
 } from 'react-native';
@@ -45,9 +46,24 @@ class VinePlayer extends React.Component {
             onPress={onPlay}
           />
         }
+        {!loaded && activated &&
+          <Loader style={styles.scene} />
+        }
       </View>
     );
   }
+}
+
+function Loader ({style, ...props}) {
+  return (
+    <View style={[styles.indicatorContainer, style]} {...props}>
+      <ActivityIndicator
+        style={styles.indicator}
+        size="large"
+        color="#fff"
+      />
+    </View>
+  )
 }
 
 const styles = StyleSheet.create({
@@ -57,6 +73,14 @@ const styles = StyleSheet.create({
     left: 0,
     right: 0,
     bottom: 0
+  },
+  indicatorContainer: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: 'rgba(0, 0, 0, 0.15)'
+  },
+  indicator: {
+
   }
 });
 
