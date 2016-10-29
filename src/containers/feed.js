@@ -15,6 +15,10 @@ import Video from 'react-native-video';
 import VideoPost from '../components/videoPost';
 
 class Feed extends React.Component {
+  static defaultProps = {
+    autoPlay: false,
+    perPage: 5
+  };
   constructor (props) {
     super(props);
     this.state = {
@@ -29,16 +33,20 @@ class Feed extends React.Component {
     this.onCardChanged = this.onCardChanged.bind(this);
   }
   componentWillMount () {
-    this.props.feedActions.playVideo(this.props.videos[0].postId);
+    if (this.props.autoPlay) {
+      this.props.feedActions.playVideo(this.props.videos[0].postId);
+    }
   }
   onCardChanged (index) {
-    this.props.feedActions.playVideo(this.props.videos[index].postId);
+    if (this.props.autoPlay) {
+      this.props.feedActions.playVideo(this.props.videos[index].postId);
+    }
   }
   render () {
     return (
       <Screen>
         <CardScrollView onCardChanged={this.onCardChanged}>
-          {this.props.videos.map(video => (
+          {this.props.videos.slice(0, this.props.perPage).map(video => (
             <VideoPost
               key={video.postId}
               video={video}

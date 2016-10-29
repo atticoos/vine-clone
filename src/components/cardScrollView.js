@@ -1,6 +1,7 @@
 import React from 'react';
 import {
   Animated,
+  Easing,
   PanResponder,
   StyleSheet,
   View
@@ -78,6 +79,10 @@ class CardScrollView extends React.Component {
         return nearestPosition;
       }, 0);
 
+    if (nearestCard === 0) {
+      nearestCard = this.cardPositions[this.cardPositions.length - 1];
+    }
+
     Animated.timing(this.state.offset, {
       toValue: -nearestCard,
       duration: DURATION
@@ -109,33 +114,11 @@ class CardScrollView extends React.Component {
 
     Animated.timing(this.state.offset, {
       toValue: -nearestCard,
+      easing: Easing.out(Easing.linear),
       duration: DURATION
     }).start(() => {
       this.lastY = -nearestCard;
       this.props.onCardChanged(this.cardPositions.indexOf(nearestCard));
-    });
-  }
-
-  getNextCard (position) {
-    return this.cardPositions.reduce((nextPosition, cardPosition) => {
-      var difference = position - cardPosition;
-      if (Math.abs(difference) < Math.abs(position - nextPosition)) {
-        return cardPosition;
-      }
-      return nextPosition;
-    }, Infinity);
-  }
-
-  scrollToNextCard (velocity) {
-    var toValue = this.state.offset._value - CELL_HEIGHT;
-    var target = this.getNextCard(this.state.offset._value);
-
-    Animated.timing(this.state.offset, {
-        toValue,
-        // easing: Easing.out(Easing.cubic),
-        duration: 500
-    }).start(() => {
-      this.lastY = toValue;
     });
   }
 
