@@ -6,6 +6,8 @@ import {
   Text
 } from 'react-native';
 import {connect} from 'react-redux';
+import {createStructuredSelector} from 'reselect';
+import videoSelector from '../selectors/videos';
 import Screen from '../components/screen';
 import Video from 'react-native-video';
 import VideoPost from '../components/videoPost';
@@ -24,7 +26,6 @@ class Feed extends React.Component {
     };
   }
   render () {
-    console.log(this.props);
     return (
       <Screen>
         <ScrollView>
@@ -47,8 +48,8 @@ const styles = StyleSheet.create({
   }
 });
 
-const selector = state => ({
-  videos: Object.keys(state.entities.videos).map(postId => state.entities.videos[postId])
+const selector = createStructuredSelector({
+  videos: videoSelector
 });
 
 export default connect(selector)(Feed);
