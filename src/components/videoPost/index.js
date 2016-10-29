@@ -8,6 +8,7 @@ import Colors from '../../constants/colors';
 import Styles from '../../constants/styles';
 import Header from './header';
 import ControlBar from './controlBar';
+import Description from './description';
 import Thumbnail from './thumbnail';
 import Video from './video';
 
@@ -15,10 +16,16 @@ class VideoPost extends React.Component {
   render () {
     var {
       video,
-      style
+      style,
+      playing,
+      paused,
+      onPlay,
+      onPause,
+      onLoop,
+      ...props
     } = this.props;
     return (
-      <View style={[styles.container, style]}>
+      <View style={[styles.container, style]} {...props}>
         <View style={styles.padding}>
           <Header
             user={video.user}
@@ -26,25 +33,29 @@ class VideoPost extends React.Component {
             loops={video.loops.count}
           />
         </View>
-        {!this.props.playing &&
+        {!playing &&
           <Thumbnail
             style={styles.thumbnail}
             url={video.thumbnailUrl}
             onPress={this.props.onPlay}
           />
         }
-        {this.props.playing &&
+        {playing &&
           <Video
             style={styles.thumbnail}
             url={video.videoUrl}
-            paused={this.props.paused}
-            onPress={this.props.paused ? this.props.onPlay : this.props.onPause}
-            onEnd={this.props.onLoop}
+            paused={paused}
+            onPress={paused ? onPlay : onPause}
+            onEnd={onLoop}
           />
         }
         <View style={styles.padding}>
           {!!video.description &&
-            <Text style={styles.description}>{video.description}</Text>
+            <Description
+              style={styles.description}
+              description={video.description}
+              entities={video.entities}
+            />
           }
           <ControlBar
             likes={video.likes.count}

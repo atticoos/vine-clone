@@ -1,6 +1,5 @@
 import React from 'react';
 import {
-  ScrollView,
   StyleSheet,
   View,
   Text
@@ -10,6 +9,7 @@ import {connect} from 'react-redux';
 import selector from '../selectors/feed';
 import * as FeedActions from '../actions/feed';
 import * as VideoActions from '../actions/videoActions';
+import CardScrollView from '../components/cardScrollView';
 import Screen from '../components/screen';
 import Video from 'react-native-video';
 import VideoPost from '../components/videoPost';
@@ -30,7 +30,7 @@ class Feed extends React.Component {
   render () {
     return (
       <Screen>
-        <ScrollView>
+        <CardScrollView>
           {this.props.videos.map(video => (
             <VideoPost
               key={video.postId}
@@ -42,7 +42,7 @@ class Feed extends React.Component {
               onLoop={() => this.props.videoActions.loop(video.postId)}
             />
           ))}
-        </ScrollView>
+        </CardScrollView>
       </Screen>
     );
   }
