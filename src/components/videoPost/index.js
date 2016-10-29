@@ -10,15 +10,16 @@ import Styles from '../../constants/styles';
 import Header from './header';
 import ControlBar from './controlBar';
 import Description from './description';
-import Thumbnail from './thumbnail';
-import Video from './video';
+// import Thumbnail from './thumbnail';
+// import Video from './video';
+import Player from './player';
 
 class VideoPost extends React.Component {
   render () {
     var {
       video,
       style,
-      playing,
+      active,
       paused,
       onPlay,
       onPause,
@@ -34,22 +35,16 @@ class VideoPost extends React.Component {
             loops={video.loops.count}
           />
         </View>
-        {!playing &&
-          <Thumbnail
-            style={styles.thumbnail}
-            url={video.thumbnailUrl}
-            onPress={this.props.onPlay}
-          />
-        }
-        {playing &&
-          <Video
-            style={styles.thumbnail}
-            url={video.videoUrl}
-            paused={paused}
-            onPress={paused ? onPlay : onPause}
-            onEnd={onLoop}
-          />
-        }
+
+        <Player
+          style={styles.thumbnail}
+          video={video}
+          playing={active && !paused}
+          onPlay={onPlay}
+          onPause={onPause}
+          onLoop={onLoop}
+        />
+
         <View style={styles.padding}>
           {!!video.description &&
             <Description

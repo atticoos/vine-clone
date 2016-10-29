@@ -35,7 +35,7 @@ class Feed extends React.Component {
             <VideoPost
               key={video.postId}
               video={video}
-              playing={video.postId === this.props.videoPlaying}
+              active={video.postId === this.props.videoPlaying}
               paused={this.props.videoPaused}
               onPlay={() => this.props.feedActions.playVideo(video.postId)}
               onPause={() => this.props.feedActions.pauseVideo()}

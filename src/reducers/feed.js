@@ -3,6 +3,7 @@ import * as ActionTypes from '../actions/types';
 const initialState = {
   videoPlaying: null,
   paused: false,
+  videosActivated: {}
 };
 
 export default function feedReducer (state = initialState, action) {
@@ -11,7 +12,11 @@ export default function feedReducer (state = initialState, action) {
       return {
         ...state,
         videoPlaying: action.videoId,
-        paused: false
+        paused: false,
+        videosActivated: {
+          ...state.videosActivated,
+          [action.videoId]: true
+        }
       };
     case ActionTypes.FEED_PAUSE_VIDEO:
       return {
