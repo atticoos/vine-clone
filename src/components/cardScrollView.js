@@ -36,8 +36,13 @@ class CardScrollView extends React.Component {
     this.panResponder = PanResponder.create({
       onStartShouldSetPanResponder: () => true,
       onStartShouldSetPanResponderCapture: () => false,
-      onMoveShouldSetPanResponder: () => true,
-      onMoveShouldSetPanResponder: () => true,
+      onMoveShouldSetPanResponder: (e) => {
+        return this.approved;
+      },
+      onMoveShouldSetPanResponderCapture: (e, gestureState) => {
+        this.approved = gestureState.dx != 0 && gestureState.dy != 0;
+        return this.approved;
+      },
       onPanResponderTerminationRequest: () => true,
       onShouldBlockNativeResponder: () => true,
       onPanResponderGrant: () => true,
